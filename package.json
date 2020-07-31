@@ -1,0 +1,19 @@
+{
+  "name": "htmlcss",
+  "version": "1.0.0",
+  "description": "html and css learning env",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ceigyx/htmlcss.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ceigyx/htmlcss/issues"
+  },
+  "homepage": "https://github.com/ceigyx/htmlcss#readme"
+}
