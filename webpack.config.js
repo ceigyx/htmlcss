@@ -14,6 +14,8 @@ module.exports = {
   },
   devServer: {
     contentBase: path.resolve(__dirname, 'public'),
+    watchContentBase: true,
+    writeToDisk: true,
   },
   module: {
     rules: [
