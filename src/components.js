@@ -1,7 +1,7 @@
-const { Form } = require('./components/form');
+const { AuthForm } = require('./components/authForm');
 
 export const components = {
-    Form: Form
+    AuthForm: AuthForm
 }
 
 console.log('components.js loaded');
