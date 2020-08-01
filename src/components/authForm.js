@@ -119,6 +119,14 @@ export class AuthForm extends HTMLElement {
       input {
         display: block;
       }
+
+      input:invalid {
+        color: red;
+      }
+      
+      input:valid {
+        color: green;
+      }
       
       button {
         display: block;
@@ -277,7 +285,7 @@ export class AuthForm extends HTMLElement {
     <div class="modal">
       <button id="close">close</button>
       <h1 id="title">Sign Up</h2>
-        <form id="auth-form" sign-up>
+        <form id="auth-form">
             <hr>
             <label for="first-name"  class="sign-up">First Name</label>
             <input required type="text" name="first-name" class="sign-up" id="first-name" placeholder="John">
@@ -286,9 +294,9 @@ export class AuthForm extends HTMLElement {
             <label for="email">Email</label>
             <input required type="email" name="email" id="email" placeholder="email@domain.com">
             <label for="password">Password</label>
-            <input required type="password" name="password" id="password" placeholder="*****">
+            <input minlength="6" maxlength="30" required type="password" name="password" id="password" placeholder="*****">
             <label for="confirm-password"  class="sign-up">Confirm Password</label>
-            <input required type="password"  class="sign-up" name="confirm-password" id="confirm-password" placeholder="*****">
+            <input minlength="6" maxlength="30" required type="password"  class="sign-up" name="confirm-password" id="confirm-password" placeholder="*****">
             <br>
             <hr>
             <button type="submit" value="Sign-Up" id="submit">Sign Up</button>
@@ -316,21 +324,23 @@ export class AuthForm extends HTMLElement {
     this.shadowRoot.addEventListener('click', (event) => {
       if (event.target.id === 'submit') {
         if (event.target.value === 'Sign-Up') {
-          console.log('process sign up form');
+          if (this.isValid()) {
+            this.submit(this.extract());
+          }
         } else if (event.target.value === 'Login') {
-          console.log('auth user & login');
+          if (this.isValid()) {
+            this.submit(this.extract());
+          }
         } else {
           return;
         }
       } else if (event.target.id === 'login-or-signup') {
         if (event.target.value === 'Login Here') {
-          console.log('switch to login');
           this.reset();
-          this._switchMode();
+          this.switchMode();
         } else if (event.target.value === 'Sign Up Here') {
-          console.log('switch to sign up');
           this.reset();
-          this._switchMode();
+          this.switchMode();
         } else {
           return;
         }
@@ -360,13 +370,55 @@ export class AuthForm extends HTMLElement {
     this.isOpen = false;
   }
 
-  submit() {}
+  submit(data) {
+    console.log('submitting...')
+    const event = new Event(this.mode, {
+      bubbles: true,
+      composed: true,
+      cancelable: true
+    })
+    event.data = data;
+    if (this.shadowRoot.dispatchEvent(event)) {
+      this.reset()
+    }
+  }
+
+  extract() {
+    const data = {
+      mode: this.mode
+    };
+    this.formHandler().forEach(element => {
+      data[element.name] = element.value;
+    });
+    return data;
+  }
+
+  isValid() {
+    let valid = true;
+    this.formHandler().forEach(element => {
+      if (!element.checkValidity()) {
+        valid = false;
+      }
+    });
+    return valid;
+  }
+  
+  formHandler() {
+    const form = this.shadowRoot.getElementById('auth-form');
+    const activeElements = [];
+    for (const element of form.querySelectorAll('input')) {
+      if (element.className === this.mode || !element.hasAttribute('class')) {
+        activeElements.push(element);
+      }
+    }
+    return activeElements;
+  }
 
   reset() {
     this.shadowRoot.querySelector('form').reset();
   }
 
-  _switchMode() {
+  switchMode() {
     if (this.mode === 'sign-up') {
       this.mode = 'login';
       if (this.hasAttribute('sign-up')) {
