@@ -9,7 +9,8 @@ export class AuthForm extends HTMLElement {
     
     :host {
         opacity: 0;
-        transition:opacity 1000ms;
+        transition: opacity 0.2s;
+        pointer-events: none;
       }
           
 
@@ -19,18 +20,18 @@ export class AuthForm extends HTMLElement {
             padding: 0;
             text-align: center;
             font-family: Arial, Helvetica, sans-serif;
-            transition: all 0.3s ease-out;
           }
           
           .container {
             position: relative;
             z-index: 100;
             min-width: 240px;
-            max-width: 360px;
+            max-width: 480px;
             opacity: 0;
             background-color: #fefefe;
             padding: 20px 30px;
             border-radius: 3%;
+            transition: opacity 0.3s ease;
         }
         
         
@@ -99,11 +100,12 @@ export class AuthForm extends HTMLElement {
           }
           
           #outside {
-            
+            opacity: 0;
             position: relative;
             color: white;
             padding-top: 10px;
             z-index: 100;
+            transition: opacity 0.4s ease;
           }
 
           #login-or-signup {
@@ -179,7 +181,7 @@ export class AuthForm extends HTMLElement {
         @media screen and (min-device-width: 2561px) {
             .container {
                 min-width: 480px;
-                max-width: 600px;
+                max-width: 800px;
             }
 
             * {
@@ -204,27 +206,41 @@ export class AuthForm extends HTMLElement {
             }
         }
 
-        :host([opened]) .container {
-          opacity: 1;
-          
-        }
         
         #backdrop {
-          position: absolute;
+          position: relative;
           top: 0;
           left: 0;
           width: 100%;
           height: 100vh;
-          background: rgba(0,0,0,0.75);
+          max-height: 0;
+          background: rgba(0,0,0,0.6);
           z-index: 10;
           opacity: 0;
           pointer-events: none;
+          transition: opacity 0.2s ease;
         }
         
+        :host([opened]) {
+          pointer-events: all;
+        }
+
         :host([opened]) #backdrop {
+          position: absolute;
+          max-height: 100vh;
           opacity: 0.75;
           pointer-events: all;
         }
+
+        :host([opened]) .container {
+          opacity: 1;
+          
+        }
+
+        :host([opened]) #outside {
+          opacity: 1;
+        }
+
         .sign-up {
           display: block;
           opacity: 1;
@@ -243,39 +259,42 @@ export class AuthForm extends HTMLElement {
 
 
         #close {
-          width: 50px;
+          width: 30px;
+          height: 30px;
+          font-size: 1rem;
           position: relative;
-          
+          top: 0;
+          left: 45%;
         }
         
         </style>
     
     <div id="backdrop"></div>
     <div class="container">
+    <button id="close">X</button>
         <form id="auth-form" sign-up>
-            <button id="close">X</button>
             <!-- Dynamic content -> switch between sign up and sign in -->    
             <h1 id="title">Sign Up</h2>
                 <!--  -->
             <slot name="intro">Default text</slot>
                 <!-- visibility based on mode -->
             <label for="first-name"  class="sign-up">First Name</label>
-            <input type="text" name="first-name" class="sign-up" id="first-name" placeholder="John">
+            <input required type="text" name="first-name" class="sign-up" id="first-name" placeholder="John">
             <label for="last-name"  class="sign-up">Last Name</label>
-            <input type="text" name="last-name" class="sign-up" id="last-name" placeholder="Doe">
+            <input required type="text" name="last-name" class="sign-up" id="last-name" placeholder="Doe">
 
             <label for="email">Email</label>
-            <input type="email" name="email" id="email" placeholder="email@domain.com">
+            <input required type="email" name="email" id="email" placeholder="email@domain.com">
             <label for="password">Password</label>
-            <input type="password" name="password" id="password">
+            <input required type="password" name="password" id="password" placeholder="*****">
                 <!-- visibility based on mode  -->
             <label for="confirm-password"  class="sign-up">Confirm Password</label>
-            <input type="password"  class="sign-up" name="confirm-password" id="confirm-password">
+            <input required type="password"  class="sign-up" name="confirm-password" id="confirm-password" placeholder="*****">
               
             <button type="submit" value="Sign-Up" id="submit">Sign Up</button>
         </form>
         <footer>
-            <p>By clicking the <p id="footer-auth-mode">Sign Up</p> button, you agree to our
+            <p>By clicking the </p> <p id="footer-auth-mode"> Sign Up</p> button, you agree to our
                 <a href="#"> Terms & Conditions</a> and
                 <a href="#"> Privacy Policy </a></p>
         </footer>
@@ -337,10 +356,6 @@ export class AuthForm extends HTMLElement {
     this.reset();
     this.removeAttribute('opened');
     this.isOpen = false;
-  }
-
-  _render() {
-
   }
 
   submit() {
