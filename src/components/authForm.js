@@ -63,9 +63,7 @@ export class AuthForm extends HTMLElement {
             word-wrap: none;
           }
           
-          ::slotted(p) {
-    
-          }
+
           
         label {
           display: block;
@@ -266,31 +264,28 @@ export class AuthForm extends HTMLElement {
           top: 0;
           left: 45%;
         }
+
+        ::slotted(p) {
+          color: black;
+        }
         
         </style>
-    
+    <div>
     <div id="backdrop"></div>
     <div class="container">
-    <button id="close">X</button>
+      <button id="close">X</button>
+      <h1 id="title">Sign Up</h2>
         <form id="auth-form" sign-up>
-            <!-- Dynamic content -> switch between sign up and sign in -->    
-            <h1 id="title">Sign Up</h2>
-                <!--  -->
-            <slot name="intro">Default text</slot>
-                <!-- visibility based on mode -->
             <label for="first-name"  class="sign-up">First Name</label>
             <input required type="text" name="first-name" class="sign-up" id="first-name" placeholder="John">
             <label for="last-name"  class="sign-up">Last Name</label>
             <input required type="text" name="last-name" class="sign-up" id="last-name" placeholder="Doe">
-
             <label for="email">Email</label>
             <input required type="email" name="email" id="email" placeholder="email@domain.com">
             <label for="password">Password</label>
             <input required type="password" name="password" id="password" placeholder="*****">
-                <!-- visibility based on mode  -->
             <label for="confirm-password"  class="sign-up">Confirm Password</label>
             <input required type="password"  class="sign-up" name="confirm-password" id="confirm-password" placeholder="*****">
-              
             <button type="submit" value="Sign-Up" id="submit">Sign Up</button>
         </form>
         <footer>
@@ -302,6 +297,7 @@ export class AuthForm extends HTMLElement {
     <div id="outside">
         <p id="footer-already-or-dont">Already </p>
         <p>have an account?</p> <button id="login-or-signup" value="Login Here">Login Here</button>
+    </div>
     </div>
     `;
     this.shadowRoot.querySelector('form').addEventListener('submit', (event) => {
