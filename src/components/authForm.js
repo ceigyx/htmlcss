@@ -300,8 +300,8 @@ export class AuthForm extends HTMLElement {
         </footer>
     </div>
     <div id="outside">
-        <p id="footer-already-or-dont">Already </p>
-        <p>have an account?</p> <button id="login-or-signup" value="Login Here">Login Here</button>
+    <p id="footer-already-or-dont">Already </p>
+    <p>have an account?</p> <button id="login-or-signup" value="Login Here">Login Here</button>
     </div>
     `;
     this.shadowRoot
