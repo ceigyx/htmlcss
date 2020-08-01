@@ -6,12 +6,12 @@ export class AuthForm extends HTMLElement {
     this.isOpen = false;
     this.shadowRoot.innerHTML = `
     <style>
+    
+    :host {
+        display: none;
         
-        :host {
-            display: none;
-            
-          }
-  
+      }
+          
 
         * {
             box-sizing: border-box;
@@ -19,9 +19,11 @@ export class AuthForm extends HTMLElement {
             padding: 0;
             text-align: center;
             font-family: Arial, Helvetica, sans-serif;
-        }
-        
-        .container {
+          }
+          
+          .container {
+            position: relative;
+            z-index: 100;
             min-width: 240px;
             max-width: 360px;
             
@@ -53,30 +55,30 @@ export class AuthForm extends HTMLElement {
         footer {
             word-wrap: normal;
             font-size: smaller;
-        }
-        
-        a {
+          }
+          
+          a {
             display: inline-block;
             word-wrap: none;
-        }
-
-        ::slotted(p) {
+          }
+          
+          ::slotted(p) {
     
-        }
-    
+          }
+          
         label {
-            display: block;
-            text-align: left;
-            margin-top: 20px;
+          display: block;
+          text-align: left;
+          margin-top: 20px;
         }
-    
+        
         input {
-            display: block;
+          display: block;
         }
-    
+        
         button {
-            display: block;
-            background-color: rgb(146, 212, 46);
+          display: block;
+          background-color: rgb(146, 212, 46);
             width: 100%;
             border-radius: 5px;
             margin: 20px auto;
@@ -84,23 +86,26 @@ export class AuthForm extends HTMLElement {
             font-weight: bold;
             color: #fefefe;
             box-shadow: inset -2px -2px;
+            
+          }
 
-        }
-
-        button:active {
+          button:active {
             box-shadow: inset 2px 2px;
-        }
+          }
         
-        *:focus {
+          *:focus {
             box-shadow: 0 0 0 2px #ffffff, 0 0 3px 5px rgb(146, 212, 46);
-        }
-
-        #outside {
+          }
+          
+          #outside {
+            
+            position: relative;
             color: white;
-            margin-top: 10px;
-        }
+            padding-top: 10px;
+            z-index: 100;
+          }
 
-        #login-or-signup {
+          #login-or-signup {
             background-color: rgba(107, 99, 99, 0.75);
             color: rgb(146, 212, 46);
             border: solid 1px black;
@@ -202,27 +207,57 @@ export class AuthForm extends HTMLElement {
           display: block;
           opacity: 1;
         }
-    </style>
+        
+        #backdrop {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100vh;
+          background: rgba(0,0,0,0.75);
+          z-index: 10;
+          opacity: 0;
+          pointer-events: none;
+        }
+        
+        :host([opened]) #backdrop {
+          opacity: 1;
+          pointer-events: all;
+        }
+
+        :host([login]) .sign-up {
+          display: none;
+        }
+
+        #close {
+          width: 50px;
+          position: relative;
+          
+        }
+        
+        </style>
     
+    <div id="backdrop"></div>
     <div class="container">
         <form id="auth-form" sign-up>
+            <button id="close">X</button>
             <!-- Dynamic content -> switch between sign up and sign in -->    
-            <h1 id="title" mode="sign-up">Sign Up</h2>
+            <h1 id="title">Sign Up</h2>
                 <!--  -->
             <slot name="intro">Default text</slot>
                 <!-- visibility based on mode -->
-            <label for="first-name">First Name</label>
-            <input type="text" name="first-name" id="first-name" placeholder="John">
-            <label for="last-name">Last Name</label>
-            <input type="text" name="last-name" id="last-name" placeholder="Doe">
+            <label for="first-name"  class="sign-up">First Name</label>
+            <input type="text" name="first-name" class="sign-up" id="first-name" placeholder="John">
+            <label for="last-name"  class="sign-up">Last Name</label>
+            <input type="text" name="last-name" class="sign-up" id="last-name" placeholder="Doe">
 
             <label for="email">Email</label>
             <input type="email" name="email" id="email" placeholder="email@domain.com">
             <label for="password">Password</label>
             <input type="password" name="password" id="password">
                 <!-- visibility based on mode  -->
-            <label for="confirm-password">Confirm Password</label>
-            <input type="password" name="confirm-password" id="confirm-password">
+            <label for="confirm-password"  class="sign-up">Confirm Password</label>
+            <input type="password"  class="sign-up" name="confirm-password" id="confirm-password">
               
             <button type="submit" value="Sign-Up" id="submit">Sign Up</button>
         </form>
@@ -234,7 +269,7 @@ export class AuthForm extends HTMLElement {
     </div>
     <div id="outside">
         <p id="footer-already-or-dont">Already </p>
-        <p>have an account?</p> <button id="login-or-signup" value="Login here">Login Here</button>
+        <p>have an account?</p> <button id="login-or-signup" value="Login Here">Login Here</button>
     </div>
     `;
     this.shadowRoot.querySelector('form').addEventListener('submit', (event) => {
@@ -254,21 +289,21 @@ export class AuthForm extends HTMLElement {
           return;
         }
       } else if (event.target.id === 'login-or-signup') {
-        if (event.target.value === 'Login here') {
+        if (event.target.value === 'Login Here') {
           console.log('switch to login');
           this.reset();
-          
           this._switchMode();
-        } else if (event.target.value === 'Sign up here') {
+        } else if (event.target.value === 'Sign Up Here') {
           console.log('switch to sign up');
           this.reset();
           this._switchMode();
         } else {
           return;
         }
+      } else if (event.target.id === 'close') {
+        this.close();
       }
     })
-    this.open();
   }
 
 
@@ -312,6 +347,11 @@ export class AuthForm extends HTMLElement {
       if (!this.hasAttribute('login')) {
         this.setAttribute('login', '')
       }
+      this.shadowRoot.getElementById('submit').value = 'Login';
+      this.shadowRoot.getElementById('submit').textContent = 'Login';
+      this.shadowRoot.getElementById('title').textContent = 'Login';
+      this.shadowRoot.getElementById('login-or-signup').value = 'Sign Up Here';
+      this.shadowRoot.getElementById('login-or-signup').textContent = 'Sign Up Here';
     } else {
       this.mode = 'sign-up';
       if (this.hasAttribute('login')) {
@@ -320,6 +360,11 @@ export class AuthForm extends HTMLElement {
       if (!this.hasAttribute('sign-up')) {
         this.setAttribute('sign-up', '')
       }
+      this.shadowRoot.getElementById('submit').value = 'Sign-Up';
+      this.shadowRoot.getElementById('submit').textContent = 'Sign Up';
+      this.shadowRoot.getElementById('title').textContent = 'Sign Up';
+      this.shadowRoot.getElementById('login-or-signup').value = 'Login Here';
+      this.shadowRoot.getElementById('login-or-signup').textContent = 'Login Here';
     }
   }
 

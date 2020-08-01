@@ -28,6 +28,10 @@ h1, p {
   word-wrap: normal;
 }
 
+button {
+  background-color: darksalmon;
+  color: aliceblue;
+}
 
 
 
