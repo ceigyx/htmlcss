@@ -8,8 +8,8 @@ export class AuthForm extends HTMLElement {
     <style>
     
     :host {
-        display: none;
-        
+        opacity: 0;
+        transition:opacity 1000ms;
       }
           
 
@@ -19,6 +19,7 @@ export class AuthForm extends HTMLElement {
             padding: 0;
             text-align: center;
             font-family: Arial, Helvetica, sans-serif;
+            transition: all 0.3s ease-out;
           }
           
           .container {
@@ -26,11 +27,10 @@ export class AuthForm extends HTMLElement {
             z-index: 100;
             min-width: 240px;
             max-width: 360px;
-            
+            opacity: 0;
             background-color: #fefefe;
             padding: 20px 30px;
             border-radius: 3%;
-            transition: all 0.3s ease-out;
         }
         
         
@@ -70,6 +70,7 @@ export class AuthForm extends HTMLElement {
           display: block;
           text-align: left;
           margin-top: 20px;
+          margin-bottom: 5px;
         }
         
         input {
@@ -203,13 +204,13 @@ export class AuthForm extends HTMLElement {
             }
         }
 
-        :host([opened]) {
-          display: block;
+        :host([opened]) .container {
           opacity: 1;
+          
         }
         
         #backdrop {
-          position: fixed;
+          position: absolute;
           top: 0;
           left: 0;
           width: 100%;
@@ -221,13 +222,25 @@ export class AuthForm extends HTMLElement {
         }
         
         :host([opened]) #backdrop {
-          opacity: 1;
+          opacity: 0.75;
           pointer-events: all;
+        }
+        .sign-up {
+          display: block;
+          opacity: 1;
+          max-height: 60px;
+          transition: opacity 0.3s, transform 0.3s, max-height 0.3s, margin 0.3s, padding 0.3s ease;
+          transform: scaleY(1);
         }
 
         :host([login]) .sign-up {
-          display: none;
+          opacity: 0; 
+          max-height: 0px;
+          margin-top: 0px;
+          padding: 0px;
+          transform: scaleY(0);
         }
+
 
         #close {
           width: 50px;
