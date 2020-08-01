@@ -1,6 +1,6 @@
-console.log('loaded');
-document.querySelector('form').addEventListener('submit', (event) => {
-  event.preventDefault();
-  console.log('submitted');
-  document.querySelector('form').reset();
-});
+import { components } from "./components";
+
+console.log('index.js loaded');
+console.log('components: ⤵');
+console.dir(components);
+console.log('components: ⤴');

@@ -5,7 +5,7 @@ module.exports = {
   mode: 'development',
   devtool: 'eval-source-map',
   entry: {
-    index: './src/index.js',
+    index: './src/index.js'
   },
   output: {
     filename: '[name].js',

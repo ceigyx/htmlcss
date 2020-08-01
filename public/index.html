@@ -10,85 +10,10 @@
     <link type="text/css" href="./assets/css/index.css" rel="stylesheet" />
   </head>
   <body>
-    <h1>Basic Form structure</h1>
-    <p>Showcase of various HTML form elements</p>
-    <hr><br>
-    <form>
-      <div>
-        <label for="name">Name</label><br />
-        <input type="text" id="name" name="name" placeholder="John Doe" />
-      </div>
-      <div>
-        <label for="email">Email</label><br />
-        <input
-          type="email"
-          id="email"
-          name="email"
-          placeholder="email@domain.com"
-        />
-      </div>
-      <div>
-        <label for="message">Message</label><br />
-        <textarea
-          id="message"
-          name="message"
-          cols="50"
-          rows="5"
-          placeholder="Type message here"
-        ></textarea>
-      </div>
-      <div>
-        <label for="sex">Sex</label>
-        <select name="sex" id="sex">
-          <option value="male">Male</option>
-          <option value="female">Female</option>
-          <option value="other">Other</option>
-        </select>
-      </div>
-      <div>
-        <label for="age">Age</label>
-        <input type="number" name="age" id="age" />
-      </div>
-      <div>
-        <label for="birthdate">Birthdate</label>
-        <input type="date" name="birthdate" id="birthdate" />
-      </div>
-      <div>
-        <label for="membership">Membership</label>
-        <input
-          type="radio"
-          name="membership"
-          id="membership"
-          value="simple"
-          checked
-        />Simple
-        <input
-          type="radio"
-          name="membership"
-          id="membership"
-          value="standard"
-        />Standard
-        <input
-          type="radio"
-          name="membership"
-          id="membership"
-          value="super"
-        />Super
-      </div>
-      <div>
-        <label for="membership">I Like..</label>
-        <input
-          type="checkbox"
-          name="likes"
-          id="likes"
-          value="bike"
-          checked
-        />Bike <input type="checkbox" name="likes" id="likes" value="car" />Car
-        <input type="checkbox" name="likes" id="likes" value="boat" />Boat
-      </div>
-      <!-- <input type="submit" value="Submit"> -->
-      <button class="btn" type="submit">Submit</button>
-      <button class="btn" type="reset">Reset</button>
-    </form>
+    <h1>Custom web component: Form</h1>
+    <p>Part of a udemy course challenge. Instead of following the tutorial, i decided to make a web component</p>
+    <hr />
+    <br />
+    <form is="lib-form"></form>
   </body>
 </html>

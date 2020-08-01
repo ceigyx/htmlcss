@@ -1,47 +1,11 @@
 * {
   box-sizing: border-box;
-  background-color:sandybrown;
+  background-color: #eee;
   font-family: Arial, Helvetica, sans-serif;
 }
 
 body {
   text-align: center;
 }
-form {
-  border: solid 3px orangered;
-  padding: 10px;
-  width: fit-content;
-  margin: auto;
-}
 
-form, form *{
-  background-color: aquamarine;
-  font-size: 1em;
-}
 
-textarea, input, select, button{
-  background-color: beige;
-}
-
-.btn {
-  background-color: crimson;
-  color: #efefef;
-  border: #0f0f0f solid 1px;
-  border-radius: 4px;
-  font-size: 1.1em;
-  box-shadow: inset -2px -2px;
-  margin-top: 5px;
-  padding: 3px 12px;
-}
-
-.btn:active {
-  background-color: #efefef;
-  color: black;
-  box-shadow: inset 2px 2px;
-}
-
-.btn:focus {
-  text-decoration: none;
-  border: solid #efefef 4px;
-  box-shadow: inset -2px -2px black;
-}
