@@ -257,12 +257,13 @@ export class AuthForm extends HTMLElement {
 
 
         #close {
-          width: 30px;
+          width: 60px;
           height: 30px;
-          font-size: 1rem;
+          font-size: 0.85rem;
           position: relative;
           top: 0;
           left: 45%;
+
         }
 
         ::slotted(p) {
@@ -273,9 +274,10 @@ export class AuthForm extends HTMLElement {
     <div>
     <div id="backdrop"></div>
     <div class="container">
-      <button id="close">X</button>
+      <button id="close">close</button>
       <h1 id="title">Sign Up</h2>
         <form id="auth-form" sign-up>
+            <hr>
             <label for="first-name"  class="sign-up">First Name</label>
             <input required type="text" name="first-name" class="sign-up" id="first-name" placeholder="John">
             <label for="last-name"  class="sign-up">Last Name</label>
@@ -286,6 +288,8 @@ export class AuthForm extends HTMLElement {
             <input required type="password" name="password" id="password" placeholder="*****">
             <label for="confirm-password"  class="sign-up">Confirm Password</label>
             <input required type="password"  class="sign-up" name="confirm-password" id="confirm-password" placeholder="*****">
+            <br>
+            <hr>
             <button type="submit" value="Sign-Up" id="submit">Sign Up</button>
         </form>
         <footer>
@@ -328,7 +332,7 @@ export class AuthForm extends HTMLElement {
         } else {
           return;
         }
-      } else if (event.target.id === 'close') {
+      } else if (event.target.id === 'close' || event.target.id === 'backdrop') {
         this.close();
       }
     })
@@ -376,6 +380,7 @@ export class AuthForm extends HTMLElement {
       this.shadowRoot.getElementById('title').textContent = 'Login';
       this.shadowRoot.getElementById('login-or-signup').value = 'Sign Up Here';
       this.shadowRoot.getElementById('login-or-signup').textContent = 'Sign Up Here';
+      this.shadowRoot.getElementById('footer-already-or-dont').textContent = 'Don\'t ';
     } else {
       this.mode = 'sign-up';
       if (this.hasAttribute('login')) {
@@ -389,6 +394,7 @@ export class AuthForm extends HTMLElement {
       this.shadowRoot.getElementById('title').textContent = 'Sign Up';
       this.shadowRoot.getElementById('login-or-signup').value = 'Login Here';
       this.shadowRoot.getElementById('login-or-signup').textContent = 'Login Here';
+      this.shadowRoot.getElementById('footer-already-or-dont').textContent = 'Already ';
     }
   }
 
