@@ -1,11 +1,35 @@
 * {
   box-sizing: border-box;
-  background-color: #eee;
+  background-color: rgb(39, 168, 190);
   font-family: Arial, Helvetica, sans-serif;
+  margin: auto;
 }
 
 body {
   text-align: center;
+  width: 100%;
+  padding: 2%;
 }
+
+header {
+  background-color: rgba(0, 0, 0, 0.2);
+  text-align: center;
+  padding: 10px;
+  border: solid rgba(0, 0, 0, 0) 1px;
+  border-radius: 10px;
+  margin: 2% auto;
+  width: fit-content;
+}
+
+h1, p {
+  color: rgb(168, 248, 47);
+  background-color: rgba(0, 0, 0, 0);
+  margin: 5px auto;
+  word-wrap: normal;
+}
+
+
+
+
 
 
