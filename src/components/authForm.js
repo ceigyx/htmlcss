@@ -23,6 +23,7 @@ export class AuthForm extends HTMLElement {
         padding: 0;
         text-align: center;
         font-family: Arial, Helvetica, sans-serif;
+        
       }
         
       .modal {
@@ -35,6 +36,7 @@ export class AuthForm extends HTMLElement {
         padding: 20px 30px;
         border-radius: 3%;
         transition: opacity 0.3s ease;
+        pointer-events: auto;
       }
       
       #outside {
@@ -42,6 +44,7 @@ export class AuthForm extends HTMLElement {
         color: white;
         padding-top: 10px;
         transition: opacity 0.4s ease;
+        margin: auto;
       }
 
       #backdrop {
@@ -91,6 +94,7 @@ export class AuthForm extends HTMLElement {
 
       input {
           width: 100%;
+          margin: auto;
           padding: 5px;
           font-size: medium;
           border: black 2px solid;
@@ -359,15 +363,60 @@ export class AuthForm extends HTMLElement {
     }
     this.setAttribute('opened', '');
     this.isOpen = true;
+    this.modifyFocus('open');
+    this.shadowRoot.querySelector('input').focus();
   }
 
   close() {
     if (this.isOpen === false) {
       return;
     }
-    this.reset();
-    this.removeAttribute('opened');
-    this.isOpen = false;
+    if (this.confirmClose()) {
+      this.reset();
+      this.removeAttribute('opened');
+      this.isOpen = false;
+      this.modifyFocus('close');
+    }
+  }
+
+  modifyFocus(val) {
+    const mode = val || this.mode;
+
+    if (mode === this.mode) {
+      if (mode === 'login') {
+        for (const element of this.shadowRoot.getElementById('auth-form').getElementsByClassName('sign-up')) {
+          if (element.tagName === 'INPUT') {
+            element.tabIndex = -1;
+          }
+        }
+      } else {
+        for (const element of this.shadowRoot.getElementById('auth-form').getElementsByClassName('sign-up')) {
+          if (element.tagName === 'INPUT') {
+            element.tabIndex = 0;
+          }
+        }  
+      }
+    } else if (mode === 'open') {
+      for (const element of this.shadowRoot.getElementById('auth-form').getElementsByTagName('input')) {
+        element.tabIndex = 0;
+      }
+      this.shadowRoot.getElementById('close').tabIndex = 0;
+      this.shadowRoot.getElementById('login-or-signup').tabIndex = 0;
+      this.shadowRoot.getElementById('submit').tabIndex = 0;
+      
+    } else if (mode === 'close') {
+      for (const element of this.shadowRoot.getElementById('auth-form').getElementsByTagName('input')) {
+        element.tabIndex = -1;
+      }
+      
+      this.shadowRoot.getElementById('close').tabIndex = -1;
+      this.shadowRoot.getElementById('login-or-signup').tabIndex = -1;
+      this.shadowRoot.getElementById('submit').tabIndex = -1;
+    }
+  }
+
+  confirmClose() {
+    return confirm('Are you sure you want to leave?');
   }
 
   submit(data) {
@@ -435,6 +484,8 @@ export class AuthForm extends HTMLElement {
         'Sign Up Here';
       this.shadowRoot.getElementById('footer-already-or-dont').textContent =
         "Don't ";
+      this.shadowRoot.getElementById('email').focus();
+      this.modifyFocus();
     } else {
       this.mode = 'sign-up';
       if (this.hasAttribute('login')) {
@@ -451,6 +502,8 @@ export class AuthForm extends HTMLElement {
         'Login Here';
       this.shadowRoot.getElementById('footer-already-or-dont').textContent =
         'Already ';
+      this.shadowRoot.getElementById('first-name').focus()
+      this.modifyFocus();
     }
   }
 
