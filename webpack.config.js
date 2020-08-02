@@ -6,7 +6,7 @@ module.exports = {
   devtool: 'eval-source-map',
   entry: {
     index: './src/index.js',
-    components: './src/components.js'
+    components: './src/components.js',
   },
   output: {
     filename: '[name].js',
@@ -29,6 +29,14 @@ module.exports = {
             presets: ['@babel/preset-env'],
           },
         },
+      },
+      {
+        test: /\.html$/i,
+        loader: 'html-loader',
+      },
+      {
+        test: /\.css$/i,
+        use: ['css-loader'],
       },
     ],
   },

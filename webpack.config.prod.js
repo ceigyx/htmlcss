@@ -33,6 +33,14 @@ module.exports = {
           },
         },
       },
+      {
+        test: /\.html$/i,
+        loader: 'html-loader',
+      },
+      {
+        test: /\.css$/i,
+        use: ['css-loader'],
+      },
     ],
   },
   plugins: [
