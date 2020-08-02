@@ -57,6 +57,7 @@ export class AuthForm extends HTMLElement {
     this.isOpen = true;
     this.modifyFocus('open');
     this.shadowRoot.querySelector('input').focus();
+    this.shadowRoot.getElementById('backdrop').nextElementSibling.scrollIntoView(true);
   }
 
   close() {
@@ -89,6 +90,9 @@ export class AuthForm extends HTMLElement {
               element.style.display = 'none';
               element.tabIndex = -1;
             }, 150);
+            setTimeout(() => {
+              this.shadowRoot.querySelector('#title').scrollIntoView(true);
+            }, 400)
           }
         }
       } else {
@@ -101,6 +105,7 @@ export class AuthForm extends HTMLElement {
             element.tabIndex = 0;
           }
         }
+        this.shadowRoot.querySelector('#title').scrollIntoView(true);
       }
     } else if (mode === 'open') {
       for (const element of this.shadowRoot
@@ -249,6 +254,7 @@ export class AuthForm extends HTMLElement {
       <a href="#"> Privacy Policy </a>
       `;
     }
+    this.shadowRoot.getElementById('backdrop').nextElementSibling.scrollIntoView(true);
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
