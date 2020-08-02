@@ -103,33 +103,53 @@ export class AuthForm extends HTMLElement {
         }
       }
     } else if (mode === 'open') {
-      for (const element of this.shadowRoot.getElementById('auth-form').getElementsByTagName('input')) {
+      for (const element of this.shadowRoot
+        .getElementById('auth-form')
+        .getElementsByTagName('input')) {
         element.style.display = 'block';
         element.tabIndex = 0;
       }
       this.shadowRoot.getElementById('close').style.display = 'block';
       this.shadowRoot.getElementById('close').tabIndex = 0;
-      
-      this.shadowRoot.getElementById('login-or-signup').style.display = 'inline-block'; 
+
+      this.shadowRoot.getElementById('login-or-signup').style.display =
+        'inline-block';
       this.shadowRoot.getElementById('login-or-signup').tabIndex = 0;
 
       this.shadowRoot.getElementById('submit').style.display = 'block';
       this.shadowRoot.getElementById('submit').tabIndex = 0;
+
+      for (const element of this.shadowRoot
+        .getElementById('terms')
+        .getElementsByTagName('a')) {
+        element.style.display = 'inline-block';
+        element.tabIndex = 0;
+      }
     } else if (mode === 'close') {
       setTimeout(() => {
-        for (const element of this.shadowRoot.getElementById('auth-form').getElementsByTagName('input')) {
+        for (const element of this.shadowRoot
+          .getElementById('auth-form')
+          .getElementsByTagName('input')) {
           element.style.display = 'none';
           element.tabIndex = -1;
         }
         this.shadowRoot.getElementById('close').style.display = 'none';
         this.shadowRoot.getElementById('close').tabIndex = -1;
 
-        this.shadowRoot.getElementById('login-or-signup').style.display = 'none';
+        this.shadowRoot.getElementById('login-or-signup').style.display =
+          'none';
         this.shadowRoot.getElementById('login-or-signup').tabIndex = -1;
 
         this.shadowRoot.getElementById('submit').style.display = 'none';
         this.shadowRoot.getElementById('submit').tabIndex = -1;
-      }, 200)
+
+        for (const element of this.shadowRoot
+          .getElementById('terms')
+          .getElementsByTagName('a')) {
+          element.style.display = 'none';
+          element.tabIndex = -1;
+        }
+      }, 200);
     }
   }
 
@@ -200,6 +220,11 @@ export class AuthForm extends HTMLElement {
         "Don't ";
       this.modifyFocus();
       this.shadowRoot.getElementById('email').focus();
+      this.shadowRoot.getElementById('footer-auth-mode').innerHTML = `
+      By clicking the Login button, you agree to our
+      <a href="#"> Terms & Conditions</a> and
+      <a href="#"> Privacy Policy </a>
+      `;
     } else {
       this.mode = 'sign-up';
       if (this.hasAttribute('login')) {
@@ -218,6 +243,11 @@ export class AuthForm extends HTMLElement {
         'Already ';
       this.modifyFocus();
       this.shadowRoot.getElementById('first-name').focus();
+      this.shadowRoot.getElementById('footer-auth-mode').innerHTML = `
+      By clicking the Sign Up button, you agree to our
+      <a href="#"> Terms & Conditions</a> and
+      <a href="#"> Privacy Policy </a>
+      `;
     }
   }
 
