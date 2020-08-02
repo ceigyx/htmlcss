@@ -375,6 +375,12 @@ export class AuthForm extends HTMLElement {
     if (this.isOpen === false) {
       return;
     }
+    if (this.mode !== 'sign-up') {
+      setTimeout(() => {
+        this.switchMode();
+      }, 200);
+      this.mode = 'sign-up';
+    }
     this.reset();
     this.removeAttribute('opened');
     this.isOpen = false;
