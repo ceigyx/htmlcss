@@ -109,6 +109,7 @@ export class AuthForm extends HTMLElement {
         a {
           display: inline-block;
           word-wrap: none;
+          text-decoration: none;
         }
         
 
