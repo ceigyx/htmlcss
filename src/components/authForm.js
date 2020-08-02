@@ -45,6 +45,7 @@ export class AuthForm extends HTMLElement {
         padding-top: 10px;
         transition: opacity 0.4s ease;
         margin: auto;
+        padding-bottom: 10%;
       }
 
       #backdrop {
@@ -135,15 +136,16 @@ export class AuthForm extends HTMLElement {
       
       button {
         display: block;
-        background-color: rgb(146, 212, 46);
+        background-color: rgb(0, 150, 0);
         width: 100%;
         border-radius: 5px;
         margin: 20px auto;
-        padding: 7px;
+        padding: 10px;
         font-weight: bold;
         color: #fefefe;
         box-shadow: inset -2px -2px;
-        
+        cursor: pointer;
+        line-height: 50%;
       }
       
       button:active {
@@ -155,8 +157,8 @@ export class AuthForm extends HTMLElement {
       }
       
       #login-or-signup {
-        background-color: rgba(107, 99, 99, 0.75);
-        color: rgb(146, 212, 46);
+        background-color: #fefefe;
+        color: rgb(0, 150, 0);
         border: solid 1px black;
         border-radius: 5px;
         padding: 6px;
@@ -189,7 +191,8 @@ export class AuthForm extends HTMLElement {
         position: relative;
         top: 0;
         left: 45%;
-
+        margin: 0px;
+        margin-left: 40%;
       }
 
       ::slotted(p) {
@@ -372,12 +375,10 @@ export class AuthForm extends HTMLElement {
     if (this.isOpen === false) {
       return;
     }
-    if (this.confirmClose()) {
-      this.reset();
-      this.removeAttribute('opened');
-      this.isOpen = false;
-      this.modifyFocus('close');
-    }
+    this.reset();
+    this.removeAttribute('opened');
+    this.isOpen = false;
+    this.modifyFocus('close');
   }
 
   modifyFocus(val) {
@@ -385,59 +386,77 @@ export class AuthForm extends HTMLElement {
 
     if (mode === this.mode) {
       if (mode === 'login') {
-        for (const element of this.shadowRoot.getElementById('auth-form').getElementsByClassName('sign-up')) {
+        for (const element of this.shadowRoot
+          .getElementById('auth-form')
+          .getElementsByClassName('sign-up')) {
           if (element.tagName === 'INPUT') {
-            element.tabIndex = -1;
+            setTimeout(() => {
+              element.removeAttribute('required');
+              element.style.display = 'none';
+              element.tabIndex = -1;
+            }, 150);
           }
         }
       } else {
-        for (const element of this.shadowRoot.getElementById('auth-form').getElementsByClassName('sign-up')) {
+        for (const element of this.shadowRoot
+          .getElementById('auth-form')
+          .getElementsByClassName('sign-up')) {
           if (element.tagName === 'INPUT') {
+            element.setAttribute('required', '');
+            element.style.display = 'block';
             element.tabIndex = 0;
           }
-        }  
+        }
       }
     } else if (mode === 'open') {
       for (const element of this.shadowRoot.getElementById('auth-form').getElementsByTagName('input')) {
+        element.style.display = 'block';
         element.tabIndex = 0;
       }
+      this.shadowRoot.getElementById('close').style.display = 'block';
       this.shadowRoot.getElementById('close').tabIndex = 0;
+      
+      this.shadowRoot.getElementById('login-or-signup').style.display = 'inline-block'; 
       this.shadowRoot.getElementById('login-or-signup').tabIndex = 0;
+
+      this.shadowRoot.getElementById('submit').style.display = 'block';
       this.shadowRoot.getElementById('submit').tabIndex = 0;
-      
     } else if (mode === 'close') {
-      for (const element of this.shadowRoot.getElementById('auth-form').getElementsByTagName('input')) {
-        element.tabIndex = -1;
-      }
-      
-      this.shadowRoot.getElementById('close').tabIndex = -1;
-      this.shadowRoot.getElementById('login-or-signup').tabIndex = -1;
-      this.shadowRoot.getElementById('submit').tabIndex = -1;
+      setTimeout(() => {
+        for (const element of this.shadowRoot.getElementById('auth-form').getElementsByTagName('input')) {
+          element.style.display = 'none';
+          element.tabIndex = -1;
+        }
+        this.shadowRoot.getElementById('close').style.display = 'none';
+        this.shadowRoot.getElementById('close').tabIndex = -1;
+
+        this.shadowRoot.getElementById('login-or-signup').style.display = 'none';
+        this.shadowRoot.getElementById('login-or-signup').tabIndex = -1;
+
+        this.shadowRoot.getElementById('submit').style.display = 'none';
+        this.shadowRoot.getElementById('submit').tabIndex = -1;
+      }, 200)
     }
   }
 
-  confirmClose() {
-    return confirm('Are you sure you want to leave?');
-  }
-
   submit(data) {
-    console.log('submitting...')
+    console.log('submitting...');
     const event = new Event(this.mode, {
       bubbles: true,
       composed: true,
-      cancelable: true
-    })
+      cancelable: true,
+    });
     event.data = data;
     if (this.shadowRoot.dispatchEvent(event)) {
-      this.reset()
+      this.reset();
     }
   }
 
   extract() {
     const data = {
-      mode: this.mode
+      mode: this.mode,
     };
-    this.formHandler().forEach(element => {
+    this.formHandler().forEach((element) => {
       data[element.name] = element.value;
     });
     return data;
@@ -445,14 +464,14 @@ export class AuthForm extends HTMLElement {
 
   isValid() {
     let valid = true;
-    this.formHandler().forEach(element => {
+    this.formHandler().forEach((element) => {
       if (!element.checkValidity()) {
         valid = false;
       }
     });
     return valid;
   }
-  
+
   formHandler() {
     const form = this.shadowRoot.getElementById('auth-form');
     const activeElements = [];
@@ -485,8 +504,8 @@ export class AuthForm extends HTMLElement {
         'Sign Up Here';
       this.shadowRoot.getElementById('footer-already-or-dont').textContent =
         "Don't ";
-      this.shadowRoot.getElementById('email').focus();
       this.modifyFocus();
+      this.shadowRoot.getElementById('email').focus();
     } else {
       this.mode = 'sign-up';
       if (this.hasAttribute('login')) {
@@ -503,8 +522,8 @@ export class AuthForm extends HTMLElement {
         'Login Here';
       this.shadowRoot.getElementById('footer-already-or-dont').textContent =
         'Already ';
-      this.shadowRoot.getElementById('first-name').focus()
       this.modifyFocus();
+      this.shadowRoot.getElementById('first-name').focus();
     }
   }
 
