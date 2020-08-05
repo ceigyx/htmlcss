@@ -184,6 +184,13 @@ button:active {
   color: black;
 }
 
+.input-wrapper {
+  max-height: auto;
+  height: auto;
+  margin: auto;
+  padding: auto;
+}
+
 @media screen and (max-device-width: 680px) {
   .modal {
     min-width: 100%;
