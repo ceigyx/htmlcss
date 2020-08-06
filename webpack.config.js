@@ -10,7 +10,7 @@ module.exports = {
   output: {
     filename: '[name].js',
     path: path.resolve(__dirname, 'public', 'assets', 'scripts'),
-    publicPath: '/assets/scripts/',
+    publicPath: 'assets/scripts/',
   },
   devServer: {
     contentBase: path.resolve(__dirname, 'public'),
