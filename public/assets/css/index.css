@@ -65,6 +65,7 @@
 
 .l-heading {
   font-size: 40px;
+  line-height: 1.2;
 }
 
 .btn:hover {
@@ -106,7 +107,7 @@ p {
   color: #fff;
 }
 
-#navbar h1 {
+#navbar .logo {
   float: left;
   padding-top: 20px;
 }
@@ -213,7 +214,7 @@ p {
 
 /* Testimonials */
 #testimonials {
-  height: 600px;
+  height: 100%;
   background: url('../img/test-bg.jpg') no-repeat center center/cover;
   padding-top: 40px;
   padding-top: 100px;
