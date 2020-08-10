@@ -7,6 +7,7 @@
     <title>EdgeLedger | Home</title>
     <meta name="description" content="Working environment for HTML & CSS" />
     <meta name="keywords" content="web development, web design, learning" />
+    <link rel="stylesheet" href="./assets/css/lightbox.css" type="text/css" />
     <link type="text/css" href="./assets/css/utilities.css" rel="stylesheet" />
     <link type="text/css" href="./assets/css/index.css" rel="stylesheet" />
     <script src="./assets/scripts/index.js" defer></script>
@@ -18,7 +19,7 @@
   </head>
   <body>
     <header class="hero">
-      <div class="navbar" id="navbar">
+      <div class="navbar top" id="navbar">
         <h1 class="logo">
           <span class="text-primary">
             <i class="fas fa-book-open"></i> Edge</span
@@ -96,7 +97,7 @@
         <div class="row">
           <div class="column">
             <div class="column-1">
-              <img src="./assets/img/home/people.jpg" alt="" />
+              <img src="./assets/images/home/people.jpg" alt="" />
             </div>
           </div>
           <div class="column">
@@ -128,22 +129,37 @@
           </p>
           <div class="row">
             <div class="column">
-              <img src="./assets/img/cases/cases1.jpg" alt="" />
-              <img src="./assets/img/cases/cases2.jpg" alt="" />
+              <a href="./assets/images/cases/cases1.jpg" data-lightbox="cases" data-title="some random title">
+                <img src="./assets/images/cases/cases1.jpg" alt="" />
+              </a>
+              <a href="./assets/images/cases/cases2.jpg" data-lightbox="cases" data-title="some random title">
+                <img src="./assets/images/cases/cases2.jpg" alt="" />
+              </a>
             </div>
             <div class="column">
-              <img src="./assets/img/cases/cases3.jpg" alt="" />
-              <img src="./assets/img/cases/cases4.jpg" alt="" />
+              <a href="./assets/images/cases/cases3.jpg" data-lightbox="cases" data-title="some random title">
+                <img src="./assets/images/cases/cases3.jpg" alt="" />
+              </a>
+              <a href="./assets/images/cases/cases4.jpg" data-lightbox="cases" data-title="some random title">
+                <img src="./assets/images/cases/cases4.jpg" alt="" />
+              </a>
             </div>
             <div class="column">
-              <img src="./assets/img/cases/cases5.jpg" alt="" />
-              <img src="./assets/img/cases/cases6.jpg" alt="" />
+              <a href="./assets/images/cases/cases5.jpg" data-lightbox="cases" data-title="some random title">
+                <img src="./assets/images/cases/cases5.jpg" alt="" />
+              </a>
+              <a href="./assets/images/cases/cases6.jpg" data-lightbox="cases" data-title="some random title">
+                <img src="./assets/images/cases/cases6.jpg" alt="" />
+              </a>
             </div>
             <div class="column">
-              <img src="./assets/img/cases/cases7.jpg" alt="" />
-              <img src="./assets/img/cases/cases8.jpg" alt="" />
+              <a href="./assets/images/cases/cases7.jpg" data-lightbox="cases" data-title="some random title">
+                <img src="./assets/images/cases/cases7.jpg" alt="" />
+              </a>
+              <a href="./assets/images/cases/cases8.jpg" data-lightbox="cases" data-title="some random title">
+                <img src="./assets/images/cases/cases8.jpg" alt="" />
+              </a>
             </div>
-          </div>
         </header>
       </section>
 
@@ -152,7 +168,7 @@
         <div class="row">
           <div class="column">
             <div class="column-1">
-              <img src="./assets/img/home/blog.jpg" alt="" />
+              <img src="./assets/images/home/blog.jpg" alt="" />
             </div>
           </div>
           <div class="column">
@@ -184,17 +200,17 @@
           </p>
           <div class="flex-items">
             <div>
-              <img src="./assets/img/team/person1.jpg" alt="" />
+              <img src="./assets/images/team/person1.jpg" alt="" />
               <h4>John Doe</h4>
               <p>President</p>
             </div>
             <div>
-              <img src="./assets/img/team/person2.jpg" alt="" />
+              <img src="./assets/images/team/person2.jpg" alt="" />
               <h4>Jean Doe</h4>
               <p>Vice President</p>
             </div>
             <div>
-              <img src="./assets/img/team/person3.jpg" alt="" />
+              <img src="./assets/images/team/person3.jpg" alt="" />
               <h4>Steve Smith</h4>
               <p>Marketing Head</p>
             </div>
@@ -207,7 +223,7 @@
         <div class="row">
           <div class="column">
             <div class="column-1">
-              <img src="./assets/img/home/contact.jpg" alt="" />
+              <img src="./assets/images/home/contact.jpg" alt="" />
             </div>
           </div>
           <div class="column">
@@ -258,6 +274,5 @@
       </div>
       <p>Copyright &copy; 2020 - EdgeLedger</p>
     </footer>
-
   </body>
 </html>

@@ -7,6 +7,7 @@
     <title>EdgeLedger | Blog</title>
     <meta name="description" content="Working environment for HTML & CSS" />
     <meta name="keywords" content="web development, web design, learning" />
+    <link rel="stylesheet" href="./assets/css/lightbox.css" type="text/css" />
     <link type="text/css" href="./assets/css/utilities.css" rel="stylesheet" />
     <link type="text/css" href="./assets/css/index.css" rel="stylesheet" />
     <script src="./assets/scripts/index.js" defer></script>
@@ -18,7 +19,7 @@
   </head>
   <body>
     <header class="hero blog">
-      <div class="navbar" id="navbar">
+      <div class="navbar top" id="navbar">
         <h1 class="logo">
           <span class="text-primary">
             <i class="fas fa-book-open"></i> Edge</span
@@ -51,88 +52,89 @@
     </header>
 
     <main>
-
-        <article class="flex-columns">
-            <div class="row">
-              <div class="column">
-                <div class="column-1">
-                  <img src="./assets/img/blog/blog1.jpg" alt="" />
-                </div>
-              </div>
-              <div class="column">
-                <div class="column-2 bg-light">
-                  <h2>Blog Post One</h2>
-                  <p class="meta">
-                      <i class="fas fa-user"></i> Posted by <strong>John Doe</strong> | April 19 2020
-                  </p>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi
-                    at reprehenderit laboriosam ex beatae consequatur aliquam totam
-                    dolore. Repellat, unde.
-                  </p>
-                  <a href="post.html" class="btn btn-dark">
-                    <i class="fas fa-chevron"></i>
-                    Read More
-                  </a>
-                </div>
-              </div>
+      <article class="flex-columns">
+        <div class="row">
+          <div class="column">
+            <div class="column-1">
+              <img src="./assets/images/blog/blog1.jpg" alt="" />
             </div>
-        </article>
-
-        <article class="flex-columns flex-reverse">
-            <div class="row">
-              <div class="column">
-                <div class="column-1">
-                  <img src="./assets/img/blog/blog2.jpg" alt="" />
-                </div>
-              </div>
-              <div class="column">
-                <div class="column-2 bg-dark">
-                  <h2>Blog Post Two</h2>
-                  <p class="meta">
-                      <i class="fas fa-user"></i> Posted by <strong>Jane Doe</strong> | July 22 2020
-                  </p>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi
-                    at reprehenderit laboriosam ex beatae consequatur aliquam totam
-                    dolore. Repellat, unde.
-                  </p>
-                  <a href="post.html" class="btn btn-light">
-                    <i class="fas fa-chevron"></i>
-                    Read More
-                  </a>
-                </div>
-              </div>
+          </div>
+          <div class="column">
+            <div class="column-2 bg-light">
+              <h2>Blog Post One</h2>
+              <p class="meta">
+                <i class="fas fa-user"></i> Posted by
+                <strong>John Doe</strong> | April 19 2020
+              </p>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi
+                at reprehenderit laboriosam ex beatae consequatur aliquam totam
+                dolore. Repellat, unde.
+              </p>
+              <a href="post.html" class="btn btn-dark">
+                <i class="fas fa-chevron"></i>
+                Read More
+              </a>
             </div>
-        </article>
+          </div>
+        </div>
+      </article>
 
-        <article class="flex-columns">
-            <div class="row">
-              <div class="column">
-                <div class="column-1">
-                  <img src="./assets/img/blog/blog3.jpg" alt="" />
-                </div>
-              </div>
-              <div class="column">
-                <div class="column-2 bg-light">
-                  <h2>Blog Post Three</h2>
-                  <p class="meta">
-                      <i class="fas fa-user"></i> Posted by <strong>Steve</strong> | August 09 2020
-                  </p>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi
-                    at reprehenderit laboriosam ex beatae consequatur aliquam totam
-                    dolore. Repellat, unde.
-                  </p>
-                  <a href="post.html" class="btn btn-dark">
-                    <i class="fas fa-chevron"></i>
-                    Read More
-                  </a>
-                </div>
-              </div>
+      <article class="flex-columns flex-reverse">
+        <div class="row">
+          <div class="column">
+            <div class="column-1">
+              <img src="./assets/images/blog/blog2.jpg" alt="" />
             </div>
-        </article>
+          </div>
+          <div class="column">
+            <div class="column-2 bg-dark">
+              <h2>Blog Post Two</h2>
+              <p class="meta">
+                <i class="fas fa-user"></i> Posted by
+                <strong>Jane Doe</strong> | July 22 2020
+              </p>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi
+                at reprehenderit laboriosam ex beatae consequatur aliquam totam
+                dolore. Repellat, unde.
+              </p>
+              <a href="post.html" class="btn btn-light">
+                <i class="fas fa-chevron"></i>
+                Read More
+              </a>
+            </div>
+          </div>
+        </div>
+      </article>
 
+      <article class="flex-columns">
+        <div class="row">
+          <div class="column">
+            <div class="column-1">
+              <img src="./assets/images/blog/blog3.jpg" alt="" />
+            </div>
+          </div>
+          <div class="column">
+            <div class="column-2 bg-light">
+              <h2>Blog Post Three</h2>
+              <p class="meta">
+                <i class="fas fa-user"></i> Posted by <strong>Steve</strong> |
+                August 09 2020
+              </p>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi
+                at reprehenderit laboriosam ex beatae consequatur aliquam totam
+                dolore. Repellat, unde.
+              </p>
+              <a href="post.html" class="btn btn-dark">
+                <i class="fas fa-chevron"></i>
+                Read More
+              </a>
+            </div>
+          </div>
+        </div>
+      </article>
     </main>
 
     <footer class="footer bg-dark">
@@ -144,6 +146,5 @@
       </div>
       <p>Copyright &copy; 2020 - EdgeLedger</p>
     </footer>
-
   </body>
 </html>
