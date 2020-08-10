@@ -1,16 +1,130 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>HTML & CSS</title>
     <meta name="description" content="Working environment for HTML & CSS" />
     <meta name="keywords" content="web development, web design, learning" />
-    <script src="./assets/scripts/index.js" defer></script>
     <link type="text/css" href="./assets/css/index.css" rel="stylesheet" />
+    <link type="text/css" href="./assets/css/utilities.css" rel="stylesheet" />
+    <script src="./assets/scripts/index.js" defer></script>
+    <script src="https://kit.fontawesome.com/4217a4231d.js" crossorigin="anonymous" defer></script>
   </head>
   <body>
-    <h1>Basic HTML structure</h1>
-    <p>paragraph</p>
+    <header class="hero">
+      <div class="navbar" id="navbar">
+        <h1 class="logo">
+          <span class="text-primary">
+            <i class="fas fa-book-open"></i> Edge</span>Ledger
+        </h1>
+        <nav>
+          <ul>
+            <li>
+              <a href="#home">Home</a>
+            </li>
+            <li>
+              <a href="#about">About</a>
+            </li>
+            <li>
+              <a href="#cases">Cases</a>
+            </li>
+            <li>
+              <a href="#blog">Blog</a>
+            </li>
+            <li>
+              <a href="#contact">Contact</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+
+      <div class="content">
+        <h1>The Sky Is The Limit</h1>
+        <p>We provide world class financial assistance</p>
+        <a href="#about" class="btn"><i class="fas fa-chevron-right"></i> Read More</a>
+      </div>
+    </header>
+
+    <main>
+
+      <!-- About - Icons -->
+      <section id="about" class="icons bg-light">
+        <div class="flex-items">
+          <div>
+            <i class="fas fa-university fa-2x"></i>
+            <div>
+              <h3>Investment Banking</h3>
+              <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Inventore, dicta.</p>
+            </div>
+          </div>
+          <div>
+            <i class="fas fa-book-reader fa-2x"></i>
+            <div>
+              <h3>Portfolio Manager</h3>
+              <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Inventore, dicta.</p>
+            </div>
+          </div>
+          <div>
+            <i class="fas fa-pencil-alt fa-2x"></i>
+            <div>
+              <h3>Tax & Custodial</h3>
+              <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Inventore, dicta.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- About - Solutions -->
+      <selection class="solutions flex-columns">
+        <div class="row">
+          <div class="column">
+            <div class="column-1">
+              <img src="./assets/img/home/people.jpg" alt="">
+            </div>
+          </div>
+          <div class="column">
+            <div class="column-2 bg-primary">
+              <h4>What you are looking for</h4>
+              <h2>We provide bespoke solutions</h2>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi at reprehenderit laboriosam ex beatae consequatur aliquam totam dolore. Repellat, unde.</p>
+              <a href="#" class="btn btn-outline">
+                <i class="fas fa-chevron"></i>
+                Read More
+              </a>
+            </div>
+          </div>
+        </div>
+      </selection>
+
+      <!-- Caes -->
+      <section id="cases" class="cases flex-grid section-padding">
+        <header class="section-header">
+          <h4>This is what we do</h4>
+          <h2>Business Cases</h2>
+          <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repellendus, quas!</p>
+          <div class="row">
+            <div class="column">
+              <img src="./assets/img/cases/cases1.jpg" alt="">
+              <img src="./assets/img/cases/cases2.jpg" alt="">
+            </div>
+            <div class="column">
+              <img src="./assets/img/cases/cases3.jpg" alt="">
+              <img src="./assets/img/cases/cases4.jpg" alt="">
+            </div>
+            <div class="column">
+              <img src="./assets/img/cases/cases5.jpg" alt="">
+              <img src="./assets/img/cases/cases6.jpg" alt="">
+            </div>
+            <div class="column">
+              <img src="./assets/img/cases/cases7.jpg" alt="">
+              <img src="./assets/img/cases/cases8.jpg" alt="">
+            </div>
+          </div>
+        </header>
+      </section>
+    </main>
+
   </body>
 </html>
