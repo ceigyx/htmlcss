@@ -22,7 +22,7 @@ window.onscroll = function () {
 };
 
 $(document).ready(function () {
-  $('#navbar a, .btn').on('click', function (e) {
+  $('#navbar a').on('click', function (e) {
     if (this.hash !== '') {
       const hash = this.hash;
       $('html, body').animate(
