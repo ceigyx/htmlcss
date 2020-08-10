@@ -1,5 +1,5 @@
-import $ from 'jquery'
-import 'lightbox2'
+import $ from 'jquery';
+import 'lightbox2';
 
 console.log('loaded');
 const navbar = document.getElementById('navbar');
