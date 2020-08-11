@@ -28,8 +28,10 @@ h1 {
   background: #fff;
   width: 200px;
   height: 200px;
-  animation: animate1 5s ease infinite; 
+  animation: animate1 5s ease-in-out infinite; 
+  transition: all 0.5s ease-in-out;
 }
+
 
 @keyframes animate1 {
   0% {
@@ -37,6 +39,7 @@ h1 {
     left: calc(50% - 100px);
     width: 200px;
     background-color: #ff0000;
+    transform: rotate(0turn);
   }
   25% {
     top: calc(25% - 100px);
@@ -44,17 +47,25 @@ h1 {
     width: 400px;
     background-color: #00ff00;
     color: #333;
+    transform: rotate(0.33turn);
   }
   75% {
     top: calc(75% - 100px);
     left: calc(50% - 300px);
     width: 600px;
     background-color: #0000ff;
+    transform: rotate(0.66turn);
   }
   100% {
     top: calc(50% - 100px);;
     left: calc(50% - 100px);
     width: 200px;
     background-color: #ff0000;
+    transform: rotate(1turn);
+  
   }
+}
+
+.box:hover {
+  border-radius: 50%;
 }
