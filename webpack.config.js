@@ -1,14 +1,14 @@
 const path = require('path');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const HtmlWebpackPartialsPlugin = require('html-webpack-partials-plugin');
 
 module.exports = {
   mode: 'development',
   devtool: 'eval-source-map',
   entry: {
     main: './src/main.js',
-
   },
   output: {
     filename: 'assets/scripts/[name].js',
@@ -34,26 +34,22 @@ module.exports = {
       },
       {
         test: /\.s[ac]ss$/i,
-        use: [
-          MiniCssExtractPlugin.loader,
-          'css-loader',
-          'sass-loader',
-        ],
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
       },
     ],
   },
   plugins: [
-    new CleanWebpackPlugin({
-      verbose: true,
-    }),
     new HtmlWebpackPlugin({
       template: './src/index.html',
       filename: 'index.html',
       inject: 'head',
-      scriptLoading: 'defer'
+      scriptLoading: 'defer',
     }),
     new MiniCssExtractPlugin({
-      filename:  './assets/styles/[name].css',
+      filename: './assets/styles/[name].css',
+    }),
+    new CleanWebpackPlugin({
+      verbose: true,
     }),
   ],
 };
