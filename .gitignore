@@ -3,4 +3,5 @@ package-lock.json
 public/assets/scripts/*
 public/assets/styles/*
 public/index.html
+public/
 .firebase
