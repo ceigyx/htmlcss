@@ -6,10 +6,10 @@
     <title>HTML & CSS</title>
     <meta name="description" content="Working environment for HTML & CSS" />
     <meta name="keywords" content="web development, web design, learning" />
-    <script src="./assets/scripts/index.js" defer></script>
-    <link type="text/css" href="./assets/css/index.css" rel="stylesheet" />
   </head>
   <body>
+    <%= require('html-loader!./templates/templates.html') %>
+    <div class="overlay hamburger"></div>
     <h1>Basic HTML structure</h1>
     <p>paragraph</p>
   </body>

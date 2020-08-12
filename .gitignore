@@ -1,4 +1,6 @@
 node_modules
 package-lock.json
-public/assets/scripts/
+public/assets/scripts/*
+public/assets/styles/*
+public/index.html
 .firebase

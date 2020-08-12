@@ -1,16 +1,19 @@
 const path = require('path');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 module.exports = {
   mode: 'development',
   devtool: 'eval-source-map',
   entry: {
-    index: './src/index.js',
+    main: './src/main.js',
+
   },
   output: {
-    filename: '[name].js',
-    path: path.resolve(__dirname, 'public', 'assets', 'scripts'),
-    publicPath: '/assets/scripts/',
+    filename: 'assets/scripts/[name].js',
+    path: path.resolve(__dirname, 'public'),
+    publicPath: '',
   },
   devServer: {
     contentBase: path.resolve(__dirname, 'public'),
@@ -29,11 +32,28 @@ module.exports = {
           },
         },
       },
+      {
+        test: /\.s[ac]ss$/i,
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+          'sass-loader',
+        ],
+      },
     ],
   },
   plugins: [
     new CleanWebpackPlugin({
       verbose: true,
+    }),
+    new HtmlWebpackPlugin({
+      template: './src/index.html',
+      filename: 'index.html',
+      inject: 'head',
+      scriptLoading: 'defer'
+    }),
+    new MiniCssExtractPlugin({
+      filename:  './assets/styles/[name].css',
     }),
   ],
 };
