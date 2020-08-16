@@ -8,90 +8,37 @@
     <script src="./assets/scripts/index.js" defer></script>
   </head>
   <body>
+    <!-- Template for buttons -->
+    <template id="audioBtnElement">
+      <div class="sound-element">
+        <button class="btn"></button>
+        <audio></audio>
+      </div>
+    </template>
+
+    <!-- Navbar -->
     <nav>
-      <h3>Dark Soulsboard</h3>
+      <h3>~ Dark Soulsboard ~</h3>
     </nav>
+
+    <!-- Landing title -->
     <h1 class="title">HIT EM BUTTONS</h1>
-    <a id="recorder">Record</a>
-    <div class="sound-array">
-      <div class="sound-element">
-        <button>Custom</button>
-        <audio id="player">
-        </audio>
+    
+    <!-- Recorder -->
+    <div id="recorder">
+      <div>
+        <button id="recorder-record" class="btn">RECORD</button>
+        <button id="recorder-play"class="btn">PLAY</button>
+        <button id="recorder-add" class="btn">ADD</button>
+        <button id="recorder-delete" class="btn">DELETE</button>
       </div>
-    <div class="sound-array">
-      <div class="sound-element">
-        <button>Hello</button>
-        <audio>
-          <source
-            src="./assets/sound/Dark Souls Carving - Hello.mp3"
-            type="audio/mpeg"
-          />
-        </audio>
-      </div>
-      <div class="sound-element">
-        <button>Help Me</button>
-        <audio>
-          <source
-            src="./assets/sound/Dark Souls Carving - Help Me.mp3"
-            type="audio/mpeg"
-          />
-        </audio>
-      </div>
-      <div class="sound-element">
-        <button>I'm Sorry</button>
-        <audio>
-          <source
-            src="./assets/sound/Dark Souls Carving - I'm Sorry.mp3"
-            type="audio/mpeg"
-          />
-        </audio>
-      </div>
-      <div class="sound-element">
-        <button>Thank You</button>
-        <audio>
-          <source
-            src="./assets/sound/Dark Souls Carving - Thank You.mp3"
-            type="audio/mpeg"
-          />
-        </audio>
-      </div>
-      <div class="sound-element">
-        <button>Very Good</button>
-        <audio>
-          <source
-            src="./assets/sound/Dark Souls Carving - Very Good.mp3"
-            type="audio/mpeg"
-          />
-        </audio>
-      </div>
-      <div class="sound-element">
-        <button>Conniptions</button>
-        <audio>
-          <source
-            src="./assets/sound/Gives me Conniptions.mp3"
-            type="audio/mpeg"
-          />
-        </audio>
-      </div>
-      <div class="sound-element">
-        <button>Hmmmm</button>
-        <audio>
-          <source
-            src="./assets/sound/Siegmeyer - mmm mmm mmm.mp3"
-            type="audio/mpeg"
-          />
-        </audio>
-      </div>
-      <div class="sound-element">
-        <button>Pritheee</button>
-        <audio>
-          <source
-            src="./assets/sound/Pritheeeeee.mp3"
-            type="audio/mpeg"
-          />
-        </audio>
-      </div>
+      <span>
+        <p>Replay:</p>
+      </span>
+      <audio id="recorder-audio"></audio>
     </div>
+
+    <!-- Sound board -->
+    <div id="soundboard"></div>
   </body>
 </html>

@@ -1,47 +1,58 @@
 console.log('hello');
-const player = document.getElementById('player');
-const recorder = document.getElementById('recorder');
-let audio = '';
+// import components from './components'
+import Sound from './components/sound.js'
+import Board from './components/board.js'
 
-recorder.addEventListener('click', (e) => {
-  navigator.mediaDevices
-    .getUserMedia({
-      audio: true,
-    })
-    .then((stream) => {
-      const mediaRecorder = new MediaRecorder(stream);
-      mediaRecorder.start();
 
-      const audioChunks = [];
+const soundBoard = new Board();
 
-      mediaRecorder.addEventListener('dataavailable', (event) => {
-        audioChunks.push(event.data);
-      });
+import './components/recorder.js'
 
-      mediaRecorder.addEventListener('stop', () => {
-        const audioBlob = new Blob(audioChunks);
-        const audioUrl = URL.createObjectURL(audioBlob);
-        audio = new Audio(audioUrl);
-        console.log(audioUrl);
-        player.src = audio;
-      });
+const audio = document.getElementById('recorder-audio');
 
-      setTimeout(() => {
+navigator.mediaDevices
+  .getUserMedia({ audio: true })
+  .then((stream) => {
+    const mediaRecorder = new MediaRecorder(stream);
+    document.getElementById('recorder-record').onclick = function (e) {
+      if (mediaRecorder.state === 'inactive') {
+        mediaRecorder.start();
+        e.target.innerHTML = 'STOP';
+      } else {
         mediaRecorder.stop();
-      }, 3000);
-    });
-});
-
-for (const element of document.getElementsByTagName('button')) {
-  element.addEventListener('click', (e) => {
-    e.target.nextElementSibling.play();
+        e.target.innerHTML = 'RECORD';
+      }
+    };
+    mediaRecorder.ondataavailable = function (e) {
+      chunks.push(e.data);
+    };
+    let chunks = [];
+    mediaRecorder.onstop = function (e) {
+      const blob = new Blob(chunks, { type: 'mpeg' });
+      document.getElementById(
+        'recorder-audio'
+      ).src = window.URL.createObjectURL(blob);
+      chunks = [];
+    };
+  })
+  .catch((err) => {
+    console.log(err);
   });
 
-  element.nextElementSibling.onplay = function () {
-    this.previousElementSibling.style.backgroundColor = 'red';
-  };
-
-  element.nextElementSibling.onended = function () {
-    this.previousElementSibling.style.backgroundColor = '#333';
-  };
+function deleteAudio() {
+    audio.src = '';
 }
+
+document.getElementById('recorder-play').addEventListener('click', (e) => {
+  audio.play();
+});
+
+document.getElementById('recorder-add').addEventListener('click', (e) => {
+  const src = audio.src;
+  soundBoard.addSound(src);
+  deleteAudio();
+});
+
+document.getElementById('recorder-delete').addEventListener('click', (e) => {
+  deleteAudio();
+});
