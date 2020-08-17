@@ -49,7 +49,8 @@ document.getElementById('recorder-play').addEventListener('click', (e) => {
 
 document.getElementById('recorder-add').addEventListener('click', (e) => {
   const src = audio.src;
-  soundBoard.addSound(src);
+  const name = document.getElementById('name').value;
+  soundBoard.addSound(src, name);
   deleteAudio();
 });
 

@@ -1,3 +1,6 @@
+import fetch from './fetch';
+import Sound from './sound';
+
 export default class Board {
   constructor() {
     this.sounds = [];
@@ -16,57 +19,37 @@ export default class Board {
   }
 
   fetchServer() {
-    const list = [
-      { src: './assets/sound/Dark Souls Carving - Hello.mp3', name: 'Hello' },
-      {
-        src: './assets/sound/Dark Souls Carving - Help Me.mp3',
-        name: 'Help Me',
-      },
-      {
-        src: "./assets/sound/Dark Souls Carving - I'm Sorry.mp3",
-        name: "I'm Sorry",
-      },
-      {
-        src: './assets/sound/Dark Souls Carving - Thank You.mp3',
-        name: 'Thank You',
-      },
-      {
-        src: './assets/sound/Dark Souls Carving - Very Good.mp3',
-        name: 'Very Good',
-      },
-      {
-        src: './assets/sound/Gives me Conniptions.mp3',
-        name: 'Conniptions',
-      },
-      {
-        src: './assets/sound/Pritheeeeee.mp3',
-        name: 'Pritheee',
-      },
-      {
-        src: './assets/sound/Siegmeyer - mmm mmm mmm.mp3',
-        name: 'Hmmm',
-      },
-    ];
-
-    list.forEach((item) => {
-      this.sounds.push(item.src);
-      const el = this.soundTemplate.content.cloneNode(true);
-      el.querySelector('button').innerHTML = item.name;
-      el.querySelector('audio').src = item.src;
-      this.board.appendChild(el);
+    fetch().forEach((item) => {
+      const sound = new Sound(item.src, item.name);
+      this.sounds.push(sound);
+      this.createButtonFor(sound);
     });
   }
 
-  addSound(src) {
-    if (src) {
-        this.sounds.push(src);
-        const el = this.soundTemplate.content.cloneNode(true);
-        el.querySelector('button').innerHTML = this.sounds.length;
-        el.querySelector('audio').src = src;
-        this.board.appendChild(el);
-        console.log('sound added')
+  addSound(src, name) {
+    if (src && name && name !== '') {
+      const sound = new Sound(src, name);
+      this.sounds.push(sound);
+      this.createButtonFor(sound);
     } else {
-        console.log('src error')
+      console.log('src or name error');
     }
+  }
+
+  createButtonFor(sound) {
+    const el = this.soundTemplate.content.cloneNode(true);
+    el.querySelector('button').innerHTML = sound.name;
+    el.querySelector('audio').src = sound.source;
+
+    const wrapper = document.createElement('div');
+    wrapper.id = sound.name;
+    wrapper.appendChild(el);
+    wrapper.addEventListener('click', (e) => {
+      if (e.target.tagName === 'A') {
+        this.board.removeChild(document.getElementById(sound.name));
+      }
+    });
+
+    this.board.appendChild(wrapper);
   }
 }

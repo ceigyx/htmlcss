@@ -1,5 +1,6 @@
 export default class Sound {
-    constructor(src) {
+    constructor(src, name) {
         this.source = src;
+        this.name = name;
     }
 }

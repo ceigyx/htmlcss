@@ -13,6 +13,9 @@
       <div class="sound-element">
         <button class="btn"></button>
         <audio></audio>
+        <span>
+          <a>x</a>
+        </span>
       </div>
     </template>
 
@@ -33,12 +36,15 @@
         <button id="recorder-delete" class="btn">DELETE</button>
       </div>
       <span>
-        <p>Replay:</p>
+        <label for="name">Name</label>
+        <input type="text" id="name">
       </span>
       <audio id="recorder-audio"></audio>
     </div>
 
     <!-- Sound board -->
-    <div id="soundboard"></div>
+    <div class="container">
+      <div id="soundboard"></div>
+    </div>
   </body>
 </html>
